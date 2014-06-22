@@ -25,7 +25,6 @@ public class MainActivity extends Activity {
 	com.neurosky.thinkgear.TGDevice tgDevice;
 	boolean activarRaw = false;
 	int pestaneos=0;
-	Activity activity;
 	
 	//Variables de interfaz de usuario
 	Button btnConectar;
@@ -46,8 +45,8 @@ public class MainActivity extends Activity {
 		//Se compruba si el bluetooth esta disponible
 	    if(bluetoothAdapter == null) {
 	    	//Indicar al usuario que el bluetooth no esta disponible
-	    	Toast.makeText(activity, "Bluetooth no disponible", Toast.LENGTH_LONG).show();
-	    	activity.finish(); //Terminar el programa
+	    	Toast.makeText(this, "Bluetooth no disponible", Toast.LENGTH_LONG).show();
+	    	finish(); //Terminar el programa
 	    }else {
 	    	//Crear un nuevo dispositivo con el adaptador bluetooth y el manejador
 	    	tgDevice = new TGDevice(bluetoothAdapter, handler);
@@ -151,7 +150,7 @@ public class MainActivity extends Activity {
 	            case TGDevice.MSG_RAW_COUNT:
 	            	break;
 	            case TGDevice.MSG_LOW_BATTERY:
-	            	Toast.makeText(activity, "¡Bateria baja!", Toast.LENGTH_SHORT).show();
+	            	Toast.makeText(getApplicationContext(), "¡Bateria baja!", Toast.LENGTH_LONG).show();
 	            	break;
 	            case TGDevice.MSG_RAW_MULTI:
 	            	TGRawMulti rawM = (TGRawMulti)msg.obj;
